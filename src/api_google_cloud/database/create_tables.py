@@ -16,7 +16,7 @@ class CustomersTable:
             Column("st_email", String(135), primary_key=False),
             Column("st_phone", String(135), primary_key=False),
             Column("sg_state", String(2), primary_key=False),
-            Column("dt_birth", Date, primary_key=False)
+            Column("dt_birth", Date, primary_key=False),
         )
 
     def create(self):

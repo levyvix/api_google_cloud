@@ -1,6 +1,6 @@
+from db.database_client import DatabaseClient
+from db.models import Customers
 from fastapi import FastAPI
-from .db.database_client import DatabaseClient
-from .db.models import Customers
 from sqlalchemy.orm import Session
 
 app = FastAPI()
@@ -21,10 +21,9 @@ async def get_customers():
 
 
 @app.get("/get_customers/{customer_id}")
-async def get_customers(customer_id: str):
+async def get_customers_by_id(customer_id: str):
     client = DatabaseClient()
 
     with Session(client.engine) as session:
-        results = session.query(Customers).filter(
-            Customers.cd_customer == customer_id).all()
+        results = session.query(Customers).filter(Customers.cd_customer == customer_id).all()
         return results

@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  api_google_cloud:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    pull_policy: build
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+    ports:
+      - 8000:8000
+    
+  db:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./docker/postgres/postgres-data:/var/lib/postgresql/data
